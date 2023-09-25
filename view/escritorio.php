@@ -16,20 +16,34 @@
               </button>
             </div>
             <form id="formulario" action="">
-               <div class="modal-body">
+                <div class="modal-body">
                   <div class="form-floating mb-3">
-                     
-                     
                      <label for="start" class="form-label">fecha</label>
                      <input type="text" class="form-control" id="start" >
                   </div>
-                  <label for="appt" class="form-label">Seleccione la hora</label>
-                  <input type="time" class="form-control"  id="appt" name="appt">
 
+                  <div class="form-floating mb-3">
+                    <label for="appt" class="form-label">Seleccione la hora</label>
+                    <input type="time" class="form-control"  id="appt" name="appt">
+                  </div>
+                  
+                  <div class="form-floating mb-3">
+                    <label class="form-label">Seleccione el tipo de corte</label>
+                    <select id="selectCorte" name="selectCorte" class="form-select">
+                      <option id="0">Corte normal</option>
+                      <option id="1">Corte con diseño personalizado</option>
+                    </select>
+                  </div>
+                
 
-               </div>
+                  <div class="form-floating mb-3">
+                    <label for="appt" class="form-label">Sube una foto de referencia</label>
+                    <input type="file">
+                  </div>
+
+                  <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
                
-              </div>
             </form>
             
              
