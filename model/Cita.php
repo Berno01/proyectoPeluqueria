@@ -22,7 +22,7 @@ Class Cita
 	{
         $sql="INSERT INTO corte 
         (fecha_corte, hora_corte, id_usuario, tipo_corte, costo_corte, referencia_corte)
-		VALUES ('$fecha', '$hora', '$id_usuario', '$descripcion1', 20, '$descripcion2')";
+		VALUES ('$fecha', '$hora', 1, '$descripcion1', 20, '$descripcion2')";
 		return ejecutarConsulta($sql);
 
 	}
