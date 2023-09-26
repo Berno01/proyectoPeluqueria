@@ -86,7 +86,8 @@ function guardaryeditar(e)
 
 	    success: function(datos)
 	    {    
-			mensaje=datos.split(":");
+			
+			mensaje=datos.split("_");
 			if(mensaje[0]=="1"){               
 			swal.fire(
 				'Mensaje de Confirmación',
@@ -94,9 +95,10 @@ function guardaryeditar(e)
 				'success'
 
 				);           
-	     mostrarform(false);
+	     		mostrarform(false);
 			}
 			else{
+				
 				Swal.fire({
 					type: 'error',
 					title: 'Error',
