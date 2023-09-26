@@ -15,7 +15,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form id="formulario" action="">
+            <form name="formulario" id="formulario" method="POST">
                 <div class="modal-body">
                   <div class="form-floating mb-3">
                      <label for="start" class="form-label">fecha</label>
@@ -37,14 +37,20 @@
                 
 
                   <div class="form-floating mb-3">
-                    <label for="appt" class="form-label">Sube una foto de referencia</label>
-                    <input type="file">
+                  <label for="">Selecciona una foto de referencia:</label>
+                    <input type="file" id="imagen" name="imagen" required>
+                    <input type="text" hidden name="imagenTxt" value="">
                   </div>
 
-                  <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cancelarform()">Cerrar</button>
+                  <button type="submit" class="btn btn-success" id="btnGuardar">Guardar</button>
+                  </form>
                 </div>
                
-            </form>
+            
             
              
           </div>
