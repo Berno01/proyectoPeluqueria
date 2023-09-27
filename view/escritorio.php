@@ -50,8 +50,9 @@
 
                   <div class="form-floating mb-3">
                   <label for="">Selecciona una foto de referencia:</label>
-                    <input type="file" id="imagen" name="imagen" required>
-                    <input type="text" id="descripcion2" name="descripcion2" hidden name="descripcion2">
+                    <input type="file" class="form-control" name="imagen" id="imagen" accept="image/x-png,image/gif,image/jpeg">
+                     <input type="hidden" name="imagenactual" id="imagenactual">
+                     <img src="" width="150px" height="120px" id="imagenmuestra">
                   </div>
 
                 </div>
