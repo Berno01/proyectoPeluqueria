@@ -13,7 +13,7 @@ Class Cita
 	//Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT * FROM categoria";
+		$sql="SELECT * FROM corte";
 		return ejecutarConsulta($sql);		
 	}
 

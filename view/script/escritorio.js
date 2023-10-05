@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function init(){
     //Para validación
 	
-
+	listar();
 	mostrarform(false);
   $("#formulario").on("submit",function(e)
 	{
@@ -113,6 +113,37 @@ function guardaryeditar(e)
 }
 
 
+
+
+function listar(){
+    tabla=$.ajax({
+		url: '../ajax/cita.php?op=0',
+		type: 'GET',
+		dataType: 'json',
+		success: function (data) {
+			if (data && data.length > 0) {
+				// Obtener nombres de columnas
+				const columnNames = Object.keys(data[0]);
+	
+				data.forEach(function (row) {
+					columnNames.forEach(function (columnName) {
+						const value = row[columnName];
+						console.log(`Columna: ${columnName}, Valor: ${value}`);
+						
+					});
+					console.log('---'); // Separador entre filas
+				});
+				console.log(data) ;
+			} else {
+				console.log('No se encontraron datos');
+			}
+		},
+		error: function (error) {
+			console.error('Error al obtener datos:', error.responseText);
+		}
+	});
+	
+}
 
 
 init();

@@ -14,10 +14,30 @@ $imagen=isset($_POST["imagen"])? $_POST["imagen"]:"";
 
 switch ($_GET["op"]){
 
+	case '0':
+
+		$rspta=$cita->listar();
+ 		//Vamos a declarar un array
+ 		$data= Array();
+
+ 		while ($reg = mysqli_fetch_assoc($rspta)){			
+			$data[]=array(
+				//tipo_corte, costo_corte, referencia_corte
+
+				"0"=>$reg['referencia_corte'],
+                "1"=>$reg['fecha_corte'],
+				"2"=>$reg['hora_corte'],
+				"3"=>$reg['id_usuario']
+			);
+		}
+ 		
+ 		echo json_encode($data);
+
+	break;
+
+
 	case '1':
 		
-		
-
 		if (empty($id_cita))
 		{
 			if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name']))
