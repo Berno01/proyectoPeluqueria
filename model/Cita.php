@@ -13,7 +13,11 @@ Class Cita
 	//Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT * FROM corte";
+		$sql="SELECT c.id_corte, c.fecha_corte, c.hora_corte, 
+		u.id_usuario, u.nombre_usuario, 
+		c.tipo_corte, c.referencia_corte 
+		FROM corte c,usuario u
+		WHERE c.id_usuario=u.id_usuario";
 		return ejecutarConsulta($sql);		
 	}
 
@@ -27,6 +31,16 @@ Class Cita
 		return ejecutarConsulta($sql);
 		*/
 		return 1;
+	}
+
+	public function mostrar($id_corte)
+	{
+		$sql="SELECT c.id_corte, c.fecha_corte, c.hora_corte, 
+		u.id_usuario, u.nombre_usuario, 
+		c.tipo_corte, c.referencia_corte 
+		FROM corte c,usuario u
+		WHERE (c.id_usuario=u.id_usuario) and (c.id_corte='$id_corte');";
+		return ejecutarConsultaSimpleFila($sql);		
 	}
 		
 	}

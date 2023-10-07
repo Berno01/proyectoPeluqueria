@@ -4,6 +4,7 @@ require_once "../model/Cita.php";
 $cita=new Cita();
 
 $id_cita=isset($_POST["id"])? $_POST["id"]:"";
+$id_corte=isset($_POST["id_corte"])? $_POST["id_corte"]:"";
 $titulo_cita=isset($_POST["title"])? ($_POST["title"]):"";
 
 $fecha=isset($_POST["start"])? ($_POST["start"]):"";
@@ -23,11 +24,13 @@ switch ($_GET["op"]){
  		while ($reg = mysqli_fetch_assoc($rspta)){			
 			$data[]=array(
 				//tipo_corte, costo_corte, referencia_corte
-
-				"0"=>$reg['referencia_corte'],
-                "1"=>$reg['fecha_corte'],
-				"2"=>$reg['hora_corte'],
-				"3"=>$reg['id_usuario']
+				
+				"id"=>$reg['id_corte'],
+				"title"=>$reg['nombre_usuario'],
+				"start"=>$reg['fecha_corte'].' '. $reg['hora_corte'],
+				"end"=>$reg['fecha_corte'].' '. $reg['hora_corte'],
+				"classname"=>'Disponible',
+                "editable"=>"true"
 			);
 		}
  		
@@ -62,7 +65,12 @@ switch ($_GET["op"]){
 			echo $rspta ? "1_Se modificó el corte" : "0:a acción para la Hoja de Ruta no fué actualizada";
 		}
 
+	break;
 
+	case '4':
+		$rspta=$cita->mostrar($id_corte);
+ 		//Codificar el resultado utilizando json
+ 		echo json_encode($rspta);
 	break;
 
 	
