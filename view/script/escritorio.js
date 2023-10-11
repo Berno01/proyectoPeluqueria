@@ -17,13 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('start').value = info.dateStr;
         myModal.show();
       },
-	  /*
 	  events: function(fetchInfo, successCallback, failureCallback) 
 	  	{
-			
-				
-			
-			 Llamamos a la función que obtiene los eventos
+			// Llamamos a la función que obtiene los eventos
 			listar()
 				.then(function(data) {
 					successCallback(data);
@@ -32,25 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
 					failureCallback(error);
 				});
 		},
-		*/
-
-		events: [
-            {
-				id:'1',
-                title: 'Evento 1',
-                start: '2023-10-06T10:00:00',
-                end: '2023-10-06T12:00:00',
-				description: 'Descripción del Evento 1'
-            },
-            {
-				id:'2',
-                title: 'Evento 2',
-                start: '2023-10-07T14:00:00',
-                end: '2023-10-07T16:00:00',
-				description: 'Descripción del Evento 1'
-            },
-            // Otros eventos...
-        ],
 		eventClick: function(event) 
 		{
 			console.log(event);
@@ -71,9 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
 function init(){
     //Para validación
 	
-	//listar();
+	listar();
 	mostrarform(false);
 	mostrarFormCorte(false);
+	$("#imagenmuestra1").hide();
   $("#formulario").on("submit",function(e)
 	{
 		guardaryeditar(e);	
@@ -219,40 +197,24 @@ function mostrar(corte)
 
 		$("#titleLabel").text('Corte para '+data.nombre_usuario);
 		$("#id_corte").val(data.id_corte);
-		$("#fecha_corte").val(data.fecha_corte);
+		$("#fecha_corte").val(data.fecha_corte+" a las "+data.hora_corte);
 		if(data.tipo_corte==0)
 		{
 			$("#tipo_corte").val('Corte normal');
 		}else{
 			$("#tipo_corte").val('Corte con diseño');
 		}
-		
-		$.post("../ajax/cita.php?op=4",{id_corte : corte.event.id}, function(data, status)
-		{
-			console.log(data);
-			data = JSON.parse(data);		
-			mostrarFormCorte(true);
-	
-			$("#titleLabel").text('Corte para '+data.nombre_usuario);
-			$("#id_corte").val(data.id_corte);
-			$("#fecha_corte").val(data.fecha_corte+" a las "+data.hora_corte);
-			if(data.tipo_corte==0)
-			{
-				$("#tipo_corte").val('Corte normal');
-			}else{
-				$("#tipo_corte").val('Corte con diseño');
-			}
-			$("#imagenmuestra1").show();
-			$("#imagenmuestra1").attr("src","../file/cortes/"+data.referencia_corte);
-			$("#imagenactual").val(data.referencia_corte);
-	
-		 });
+        $("#imagenmuestra1").show();
+		$("#imagenmuestra1").attr("src","../file/cortes/"+data.referencia_corte);
+		$("#imagenactual").val(data.referencia_corte);
 
  	});
 
 
 
 }
+
+
 
 
 init();

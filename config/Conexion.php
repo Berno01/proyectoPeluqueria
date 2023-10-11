@@ -1,7 +1,7 @@
 <?php 
 
-require_once "global.php";
-$conexion = mysqli_connect("localhost", "root", "", "peluqueria");
+require_once "Global.php";
+$conexion = mysqli_connect("localhost", "root", "", "id21295525_agenda");
 
 if (!$conexion)
 {
