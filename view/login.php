@@ -30,25 +30,24 @@
   <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
     <div class="login-card">
       <h2 class="text-center mb-4">Inicio de Sesión</h2>
-      <form>
+      <form id="frmAcceso">
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingresa tu correo">
+          <label for="exampleInputEmail1" class="form-label">Usuario</label>
+          <input type="text" class="form-control" id="logina" aria-describedby="emailHelp" placeholder="Ingresa tu usuario">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+          <input type="password" class="form-control" id="clavea" placeholder="Contraseña">
+          
         </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Recordarme</label>
-        </div>
+        
         <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
       </form>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="script/login.js"></script>
 </body>
 </html>
 
