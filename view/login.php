@@ -32,12 +32,10 @@
       <h2 class="text-center mb-4">Inicio de Sesión</h2>
       <form id="frmAcceso">
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Usuario</label>
-          <input type="text" class="form-control" id="logina" aria-describedby="emailHelp" placeholder="Ingresa tu usuario">
+          <input type="text" class="form-control form-control-lg" id="logina" aria-describedby="emailHelp" placeholder="Ingresa tu usuario">
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="clavea" placeholder="Contraseña">
+          <input type="password" class="form-control form-control-lg" id="clavea" placeholder="Contraseña">
           
         </div>
         
@@ -46,8 +44,10 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript" src="script/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/lib/jquery/jquery.min.js"></script>
+    <script src="../public/js/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" src="script/login.js"></script>
 </body>
 </html>
 

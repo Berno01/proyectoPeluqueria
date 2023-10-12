@@ -63,9 +63,9 @@ Class usuario
 	}
 
 	//Implementamos un método para desactivar categorías
-	public function desactivar($idusuario)
+	public function desactivar($id_usuario)
 	{
-		$sql="UPDATE usuario1 SET estado_usuario=FALSE WHERE id_usuario='$idusuario'";
+		$sql="UPDATE usuario SET estado_usuario=FALSE WHERE id_usuario='$id_usuario'";
 		return ejecutarConsulta($sql);
 	}
 
@@ -110,11 +110,8 @@ Class usuario
 	//Función para verificar el acceso al sistema
 	public function verificar($login,$clave)
     {
-    	$sql="SELECT p.email_persona, p.nombre_persona, p.ap_persona, p.num_documento_persona, p.imagen_persona, u.id_usuario, 
-		u.estado_usuario, u.nombre_usuario, u.clave_usuario, r.idrol, r.rolnombre, o.nombre_oficina
-		FROM persona1 p, usuario1 u, oficina1 o, rol r 
-		WHERE p.id_persona=u.id_persona AND u.id_rol=r.idrol AND p.id_persona=o.id_personal AND 
-		u.nombre_usuario='".$login."' AND clave_usuario='".$clave."' AND u.estado_usuario=TRUE"; 
+    	$sql="SELECT * FROM usuario 
+		WHERE login_usuario ='".$login."' AND clave_usuario ='".$clave."' AND estado_usuario=TRUE"; 
     	return ejecutarConsulta($sql);  
     }
 
@@ -126,24 +123,24 @@ Class usuario
 	}
 
 	//Implementamos un método para editar registros
-	public function editar_intentos($idusuario,$intentos)
+	public function editar_intentos($id_usuario,$intentos)
 	{
-		$sql="UPDATE usuario1 SET intentos_usuario='$intentos' WHERE id_usuario='$idusuario'";
+		$sql="UPDATE usuario SET intentos_usuario='$intentos' WHERE id_usuario='$id_usuario'";
 		return ejecutarConsulta($sql);
 	}
 	//Función para verificar el acceso al sistema
 	public function verificar_intentos($login)
     {
-		$sql="SELECT id_usuario, intentos_usuario FROM usuario1 WHERE nombre_usuario='$login'";
+		$sql="SELECT id_usuario, intentos_usuario FROM usuario WHERE login_usuario='$login'";
 		$resultado = ejecutarConsulta($sql); 
-		while ($reg = pg_fetch_assoc($resultado)){
-			$idusuario=$reg["id_usuario"];
+		while ($reg = mysqli_fetch_assoc($resultado)){
+			$id_usuario=$reg["id_usuario"];
 			$num_intentos=(int)$reg["intentos_usuario"]+1;
 			if($num_intentos>=5){
-				$respuesta=$this->editar_intentos($idusuario,$num_intentos);
-				$respuesta=$this->desactivar($idusuario);
+				$respuesta=$this->editar_intentos($id_usuario,$num_intentos);
+				$respuesta=$this->desactivar($id_usuario);
 			}
-			else{$respuesta=$this->editar_intentos($idusuario,$num_intentos);}
+			else{$respuesta=$this->editar_intentos($id_usuario,$num_intentos);}
 		}
 	}
 	
