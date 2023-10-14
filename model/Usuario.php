@@ -20,22 +20,19 @@ Class usuario
 	}
 
 	//Implementamos un método para insertar registros
-	public function insertar($nombre, $apellidop, $apellidom, $tipo_documento,$num_documento,$direccion,$email, $imagen, 
-	$usuariox, $clavehash, $rol)
+	public function insertar($nombre, $apellidop, 
+	$usuariox, $clavehash, $rol, $telef)
 	{
-		$validacion=$this->comprueba_duplicados($num_documento,0);
+		$validacion=$this->comprueba_duplicados($usuariox, 0);
 		if($validacion==0){
 
-            $sql="INSERT INTO persona1 (nombre_persona, ap_persona, am_persona, tipo_documento_persona,
-			num_documento_persona, direccion_persona, email_persona, imagen_persona)
-		    VALUES ('".$nombre."','".$apellidop."','".$apellidom."',".$tipo_documento.",'".$num_documento."', 
-			'".$direccion."', '".$email."', '".$imagen."') RETURNING id_persona;";
-            
-			$idpersona = ejecutarConsulta_retornarID($sql);
-            
-			$sqlx="INSERT INTO usuario1(nombre_usuario, clave_usuario, id_rol, id_persona)
-			VALUES ('".$usuariox."', '".$clavehash."', ".$rol.", ".$idpersona.") RETURNING id_usuario";
-			return ejecutarConsulta($sqlx);
+            $sql="INSERT INTO usuario (nombre_usuario, apellidop_usuario, 
+            login_usuario, clave_usuario, telef_usuario, rol_usuario)
+		    VALUES ('".$nombre."','".$apellidop."',
+			'".$usuariox."', '".$clavehash."', '".$telef."', 0) ;";
+            echo $sql; // Imprime la consulta
+			
+			return ejecutarConsulta($sql);
 
 		}
 		else{return 0;}
@@ -48,7 +45,7 @@ Class usuario
 		$validacion=$this->comprueba_duplicados($num_documento,$idusuario);
 		if($validacion==0){
             
-            $idpersona=$this->idpersona_usuario($idusuario);
+            $idpersona=$this->idpersona_usuario($id_usuario);
             $sql="UPDATE persona1 SET nombre_persona='$nombre', 
 			ap_persona='$apellidop', am_persona='$apellidom',tipo_documento_persona='$tipo_documento',num_documento_persona='$num_documento',
 			direccion_persona='$direccion',email_persona='$email',imagen_persona='$imagen' WHERE id_persona='$idpersona'";
@@ -102,9 +99,9 @@ Class usuario
 	public function comprueba_duplicados($nombre,$id)
 	{
 		$resultado=0;
-		$sql="SELECT COUNT(p.idpersona) AS idpersona FROM persona p, usuario u WHERE (p.personanum_documento='$nombre')AND(u.idpersona=p.idpersona) AND (u.idusuario<>$id)";
+		$sql="SELECT COUNT(id_usuario) AS id_usuario FROM usuario WHERE (login_usuario='$nombre') AND (id_usuario=$id)";
 		$resultado = ejecutarConsultaSimpleFila($sql);
-		return $resultado['idpersona'];		
+		return $resultado['id_usuario'];		
 	}
 
 	//Función para verificar el acceso al sistema

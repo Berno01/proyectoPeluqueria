@@ -11,11 +11,26 @@ $nombre_usuario=isset($_POST["nombre_usuario"])? mb_strtoupper($_POST["nombre_us
 $apellidop_usuario=isset($_POST["apellidop_usuario"])? mb_strtoupper($_POST["apellidop_usuario"]):"";
 $apellidom_usuario=isset($_POST["apellidom_usuario"])? mb_strtoupper($_POST["apellidom_usuario"]):"";
 $rol_usuario=isset($_POST["rol_usuario"])? mb_strtoupper($_POST["rol_usuario"]):"";
+$telef_usuario=isset($_POST["telef_usuario"])? mb_strtoupper($_POST["telef_usuario"]):"";
 
-$login=isset($_POST["login"])? $_POST["login"]:"";
-$clave=isset($_POST["clave"])? $_POST["clave"]:"";
+$login=isset($_POST["login_usuario"])? $_POST["login_usuario"]:"";
+$clave=isset($_POST["clave_usuario"])? $_POST["clave_usuario"]:"";
 
 switch ($_GET["op"]){
+    case '1':
+        
+        //Hash SHA256 en la contraseña
+		$clavehash=$seguridad->stringEncryption('encrypt', $clave);
+		if (empty($id_usuario)){
+			$rspta=$usuario->insertar($nombre_usuario, $apellidop_usuario,$login,$clavehash,$rol_usuario, $telef_usuario);
+			echo $rspta ? "1:El usuario fué registrado" : "0:El usuario no fué registrado";
+		}
+		else {
+			$rspta=$usuario->editar($id_usuario, $nombre_usuario, $apellidop_usuario,$login,$clavehash,$rol_usuario, $telef_usuario);
+			echo $rspta ? "1:El usuario fué actualizado" : "0:El usuario no fué actualizado";
+		}
+	break;
+
 
 case '5':
 		$logina=$_POST['logina'];
@@ -24,7 +39,7 @@ case '5':
 	    //Hash SHA256 en la contraseña
 		$clavehash=$seguridad->stringEncryption('encrypt', $clavea);
 
-		$rspta=$usuario->verificar($logina, $clavea);
+		$rspta=$usuario->verificar($logina, $clavehash);
 		$contador=0;
 		while ($fetch= mysqli_fetch_assoc($rspta)){
 			$contador+=1;

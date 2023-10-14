@@ -60,7 +60,7 @@
         <ul class="nav-menu">
           
           <li><a href="login.php">Iniciar Sesion</a></li>
-          <li><a href="#services">Registrarse</a></li>
+          <li><a href="singin.php">Registrarse</a></li>
           
           
           
