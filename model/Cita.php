@@ -22,12 +22,12 @@ Class Cita
 	}
 
 	//Implementamos un método para insertar registros
-	public function insertar($titulo_cita, $fecha, $hora, $descripcion1, $descripcion2)
+	public function insertar($titulo_cita, $fecha, $hora, $descripcion1, $descripcion2, $usuario)
 	{
         
 		$sql="INSERT INTO corte 
         (fecha_corte, hora_corte, id_usuario, tipo_corte, costo_corte, referencia_corte)
-		VALUES ('$fecha', '$hora', 1, '$descripcion1', 20, '$descripcion2')";
+		VALUES ('$fecha', '$hora', $usuario, '$descripcion1', 20, '$descripcion2')";
 		return ejecutarConsulta($sql);
 		
 /*		return 1;*/

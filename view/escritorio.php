@@ -36,15 +36,15 @@
                 <div class="modal-body">
 
                   <div class="form-floating mb-3">
-                     
                      <input type="text" class="form-control" id="id" name="id" hidden>
+                     <input type="text" id="id_usuario" name="id_usuario" hidden <?php if(!isset($_SESSION["login_usuario"]))
+                     {
+                        echo '';
+                     }else{
+                      echo 'value='.$_SESSION["id_usuario"];
+                     }?>>
                   </div>
-                  
-                  
-
-
                   <div class="form-floating mb-3">
-                     
                      <input type="text" class="form-control" id="start" name="start" hidden>
                   </div>
 

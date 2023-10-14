@@ -142,6 +142,9 @@ function guardaryeditar(e)
 
 				);           
 	     		mostrarform(false);
+				 setTimeout(function() {
+					window.location.href = 'escritorio.php';
+				}, 2000);
 			}
 			else{
 				

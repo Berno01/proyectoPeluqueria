@@ -3,6 +3,7 @@ require_once "../model/Cita.php";
 
 $cita=new Cita();
 
+$id_usuario=isset($_POST["id_usuario"])? $_POST["id_usuario"]:"";
 $id_cita=isset($_POST["id"])? $_POST["id"]:"";
 $id_corte=isset($_POST["id_corte"])? $_POST["id_corte"]:"";
 $titulo_cita=isset($_POST["title"])? ($_POST["title"]):"";
@@ -57,7 +58,7 @@ switch ($_GET["op"]){
 				}
 			}
 
-			$rspta=$cita->insertar($titulo_cita, $fecha, $hora, $descripcion1, $imagen);
+			$rspta=$cita->insertar($titulo_cita, $fecha, $hora, $descripcion1, $imagen, $id_usuario);
 			echo $rspta ? "1_Se registró tu corte a la agenda de LeoBarber" : "0_La acción para la Hoja de Ruta no fué registrada";
 		}
 		else {
