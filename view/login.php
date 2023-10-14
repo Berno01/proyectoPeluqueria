@@ -40,6 +40,7 @@
         </div>
         
         <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        <button class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
       </form>
     </div>
   </div>

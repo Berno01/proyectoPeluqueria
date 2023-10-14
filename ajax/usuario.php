@@ -45,9 +45,9 @@ case '5':
 			$contador+=1;
 			//Declaramos las variables de sesión
 	        $_SESSION['id_usuario']=$fetch['id_usuario'];
-	        $_SESSION['nombre_persona']=$fetch['nombre_persona']." ".$fetch['apellidop_usuario']." ".$fetch['apellidom_usuario'];
-	        //$_SESSION['personaimagen']=$fetch['imagen_persona'];
-	        $_SESSION['nombre_usuario']=$fetch['login_usuario'];
+	        $_SESSION['nombre_usuario']=$fetch['nombre_usuario']." ".$fetch['apellidop_usuario'];
+	        
+	        $_SESSION['login_usuario']=$fetch['login_usuario'];
 			$_SESSION['rol_usuario']=$fetch['rol_usuario'];
 			
 		}
@@ -60,6 +60,12 @@ case '5':
 		}
 	    echo $contador;
 	break;
+
+	case '6':
+		session_unset();
+		header('Location: ../index.php');
+	break;
+		
 
 }
 ?>

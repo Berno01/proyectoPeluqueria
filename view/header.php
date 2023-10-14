@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,8 +62,15 @@
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
+        <?php if(!isset($_SESSION["login_usuario"]))
+          {
+            echo '<li><a href="login.php">Iniciar Sesion</a></li>';
+          } 
+          else{
+            echo '<li><a href="../ajax/usuario.php?op=6">Cerrar Sesion</a></li>';
+          }
+        ?>
           
-          <li><a href="login.php">Iniciar Sesion</a></li>
           <li><a href="singin.php">Registrarse</a></li>
           
           

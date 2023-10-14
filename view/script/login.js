@@ -1,12 +1,16 @@
 //modificacion del login.js e implementacion del patron de diseño en states
-
+function cancelarform()
+{
+	//limpiar();
+	window.location.href = 'escritorio.php';
+}
 $(document).ready(function() {
     // Definimos el estado inicial
     let estado = {
       logueado: false,
       mensaje: ""
     };
-  
+
     // Manejamos el envío del formulario de inicio de sesión
     $("#frmAcceso").on("submit", function(e) {
       e.preventDefault();

@@ -58,7 +58,7 @@ switch ($_GET["op"]){
 			}
 
 			$rspta=$cita->insertar($titulo_cita, $fecha, $hora, $descripcion1, $imagen);
-			echo $rspta ? "1_Se registró tu corte a la agenda de LeoBarber" : "0:a acción para la Hoja de Ruta no fué registrada";
+			echo $rspta ? "1_Se registró tu corte a la agenda de LeoBarber" : "0_La acción para la Hoja de Ruta no fué registrada";
 		}
 		else {
 			$rspta=$cita->editar($id_cita, $titulo_cita, $fecha, $hora, $descripcion1, $imagen);

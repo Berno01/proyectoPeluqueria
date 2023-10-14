@@ -1,6 +1,23 @@
 <?php
     require 'header.php';
+    ob_start();
+    
+
 ?>  
+<?php if(!isset($_SESSION["login_usuario"]))
+{
+  echo '<h3 style="text-align: center; line-height: 1.5; font-weight: normal; color: #000000; background-color: #d9534f; text-decoration: none; text-reset: none;">
+  
+          Inicia sesion para registrar tu cita!
+        </h3>';
+}else
+{
+  echo '<h3 style="text-align: center; line-height: 1.5; font-weight: normal; color: #000000; background-color: #8cc084; text-decoration: none; text-reset: none;">
+          Bienvenido '.$_SESSION['nombre_usuario'].'.
+        </h3>';
+} 
+?>
+      
       <!-- content section -->
       <div class="container">
          <div id='calendar'></div>
@@ -55,7 +72,7 @@
 
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cancelarform()">Cerrar</button>
-                  <button type="submit" class="btn btn-success" id="btnGuardar">Guardar</button>
+                  <button <?php if(!isset($_SESSION["login_usuario"])){echo 'disabled title="Inicia sesión para habilitar este botón" style="position: relative;"';} ?> type="submit" class="btn btn-success" id="btnGuardar">Guardar</button>
                   </form>
                 </div>
                
@@ -130,4 +147,8 @@
 ?>  
 <!-- añadimos su js -->
 <script src="script/escritorio.js"></script>
+<?php 
 
+////}
+ob_end_flush();
+?>
