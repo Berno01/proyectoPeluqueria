@@ -48,6 +48,11 @@
   <script src="../public/js/sweetalert2.all.min.js"></script>
   <!-- españolFulcalendar -->
   <script src="../public/js/locales_es.js"></script>
+  <!-- page js -->
+  <script src="../public/vendors/datatables/jquery.dataTables.min.js"></script>
+  <script src="../public/vendors/datatables/dataTables.bootstrap.min.js"></script>
+  <script src="../public/js/pages/datatables.js"></script>
+
 
 </body>
 </html>

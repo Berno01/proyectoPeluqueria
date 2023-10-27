@@ -15,7 +15,7 @@ Class usuario
 	//Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT * FROM persona1 p, usuario1 r WHERE p.id_persona=r.id_persona";
+		$sql="SELECT * FROM usuario";
 		return ejecutarConsulta($sql);		
 	}
 
@@ -74,9 +74,9 @@ Class usuario
 	}
 
 	//Implementar un método para mostrar los datos de un registro a modificar
-	public function mostrar($idusuario)
+	public function mostrar($id_usuario)
 	{
-		$sql="SELECT * FROM persona1 p, usuario1 r WHERE p.id_persona=r.id_persona AND (r.id_usuario='$idusuario')";
+		$sql="SELECT * FROM usuario WHERE id_usuario='$id_usuario';";
 		return ejecutarConsultaSimpleFila($sql);
 	}
 

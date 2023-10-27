@@ -17,6 +17,35 @@ $login=isset($_POST["login_usuario"])? $_POST["login_usuario"]:"";
 $clave=isset($_POST["clave_usuario"])? $_POST["clave_usuario"]:"";
 
 switch ($_GET["op"]){
+
+	case '0':
+		$rspta=$usuario->listar();
+ 		//Vamos a declarar un array
+ 		$data= Array();
+
+ 		while ($reg = mysqli_fetch_assoc($rspta)){
+
+			$data[]=array(
+				"4"=>($reg['estado_usuario']=='t')?'<button class="btn btn-warning" onclick="mostrar('.$reg['id_usuario'].')"><i class="bx bx-pencil"></i></button>'.
+					'<button class="btn btn-danger" onclick="desactivar('.$reg['id_usuario'].')"><i class="bx bx-trash"></i></button>':
+					'<button class="btn btn-warning" onclick="mostrar('.$reg['id_usuario'].')"><i class="bx bx-pencil"></i></button>'.
+					'<button class="btn btn-primary" onclick="activar('.$reg['id_usuario'].')"><i class="bx bx-check"></i></button>',
+                "0"=>$reg['nombre_usuario']." ".$reg['apellidop_usuario'],
+                "1"=>$reg['telef_usuario'],
+                "2"=>$reg['login_usuario'],
+                "3"=>$reg['fallos_usuario'],
+                
+				);
+		}
+ 		$results = array(
+ 			"sEcho"=>1, //Información para el datatables
+ 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+ 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+ 			"aaData"=>$data);
+ 		echo json_encode($results);
+
+	break;
+
     case '1':
         
         //Hash SHA256 en la contraseña
@@ -29,6 +58,12 @@ switch ($_GET["op"]){
 			$rspta=$usuario->editar($id_usuario, $nombre_usuario, $apellidop_usuario,$login,$clavehash,$rol_usuario, $telef_usuario);
 			echo $rspta ? "1:El usuario fué actualizado" : "0:El usuario no fué actualizado";
 		}
+	break;
+
+	case '4':
+		$rspta=$usuario->mostrar($id_usuario);
+ 		//Codificar el resultado utilizando json
+ 		echo json_encode($rspta);
 	break;
 
 

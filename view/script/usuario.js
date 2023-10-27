@@ -20,8 +20,8 @@ function init(){
 //Función limpiar
 function limpiar()
 {
-	$("#nombre_categoria").val("");
-	$("#id_categoria").val("");
+	$("#nombre_usuario").val("");
+	$("#id_usuario").val("");
 }
 
 //Función mostrar formulario
@@ -54,11 +54,11 @@ function listar(){
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
             },
-            dom: 'Bfrltip',//Definimos los elementos del control de tabla
+            dom: 'Bfltip',//Definimos los elementos del control de tabla
             
             "ajax":
                     {
-                        url: '../ajax/categoria.php?op=0',
+                        url: '../ajax/usuario.php?op=0',
                         type : "get",
                         dataType : "json",						
                         error: function(e){
@@ -77,7 +77,7 @@ function guardaryeditar(e)
 	var formData = new FormData($("#formulario")[0]);
 
 	$.ajax({
-		url: "../ajax/categoria.php?op=1",
+		url: "../ajax/usuario.php?op=1",
 	    type: "POST",
 	    data: formData,
 	    contentType: false,
@@ -110,20 +110,23 @@ function guardaryeditar(e)
 	limpiar();
 }
 
-function mostrar(id_categoria)
+function mostrar(id_usuario)
 {
-	$.post("../ajax/categoria.php?op=4",{id_categoria : id_categoria}, function(data, status)
+	$.post("../ajax/usuario.php?op=4",{id_usuario : id_usuario}, function(data, status)
 	{
 		data = JSON.parse(data);		
 		mostrarform(true);
 
-		$("#nombre_categoria").val(data.nombre_categoria);
- 		$("#id_categoria").val(data.id_categoria);
+		$("#nombre_usuario").val(data.nombre_usuario);
+ 		$("#id_usuario").val(data.id_usuario);
+		$("#apellidop_usuario").val(data.apellidop_usuario);
+		$("#telef_usuario").val(data.telef_usuario);
+		$("#login_usuario").val(data.login_usuario);
  	});
 }
 
 //Función para desactivar registros
-function desactivar(id_categoria)
+function desactivar(id_usuario)
 {
 	swal.fire({
 		title: 'Mensaje de Confirmación',
@@ -136,7 +139,7 @@ function desactivar(id_categoria)
 		confirmButtonText: 'Desactivar'
 	}).then((result) => {
 		if (result.value) {
-			$.post("../ajax/categoria.php?op=2", {id_categoria : id_categoria}, function(e){
+			$.post("../ajax/usuario.php?op=2", {id_usuario : id_usuario}, function(e){
 				mensaje=e.split(":");
 					if(mensaje[0]=="1"){  
 						swal.fire(
@@ -160,7 +163,7 @@ function desactivar(id_categoria)
 }
 
 //Función para activar registros
-function activar(id_categoria)
+function activar(id_usuario)
 {
 	swal.fire({
 		title: 'Mensaje de Confirmación',
@@ -173,7 +176,7 @@ function activar(id_categoria)
 		confirmButtonText: 'Activar'
 	}).then((result) => {
 		if (result.value) {
-			$.post("../ajax/categoria.php?op=3", {id_categoria : id_categoria}, function(e){
+			$.post("../ajax/usuario.php?op=3", {id_usuario : id_usuario}, function(e){
 				mensaje=e.split(":");
 					if(mensaje[0]=="1"){  
 						swal.fire(
