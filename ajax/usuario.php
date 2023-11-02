@@ -26,7 +26,7 @@ switch ($_GET["op"]){
  		while ($reg = mysqli_fetch_assoc($rspta)){
 
 			$data[]=array(
-				"4"=>($reg['estado_usuario']=='t')?'<button class="btn btn-warning" onclick="mostrar('.$reg['id_usuario'].')"><i class="bx bx-pencil"></i></button>'.
+				"4"=>($reg['estado_usuario']=='1')?'<button class="btn btn-warning" onclick="mostrar('.$reg['id_usuario'].')"><i class="bx bx-pencil"></i></button>'.
 					'<button class="btn btn-danger" onclick="desactivar('.$reg['id_usuario'].')"><i class="bx bx-trash"></i></button>':
 					'<button class="btn btn-warning" onclick="mostrar('.$reg['id_usuario'].')"><i class="bx bx-pencil"></i></button>'.
 					'<button class="btn btn-primary" onclick="activar('.$reg['id_usuario'].')"><i class="bx bx-check"></i></button>',
